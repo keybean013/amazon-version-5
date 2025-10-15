@@ -1,16 +1,18 @@
 import { products } from "../../data/products.js";
 import { elemEditor } from "../utils/domHelper.js";
+import { handleAddToCart } from "./handleAddToCart.js";
 
 export function renderProducts () {
   let productsHTML = "";
 
   products.forEach((product) => {
+    const productId = product.id;
     const name = product.name;
     const image = product.image;
     const starRating = product.getStarsUrl();
     const ratingCount = product.rating.count;
     const price = product.getPrice();
-
+   
     productsHTML += `
       <div class="product-container">
         <div class="product-image-container">
@@ -35,7 +37,7 @@ export function renderProducts () {
         </div>
 
         <div class="product-quantity-container">
-          <select>
+          <select class="js-quantity-${productId}">
             <option selected value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -58,7 +60,7 @@ export function renderProducts () {
           Added
         </div>
 
-        <button class="add-to-cart-button button-primary">
+        <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${productId}">
           Add to Cart
         </button>
       </div>
@@ -66,4 +68,6 @@ export function renderProducts () {
   });
 
   elemEditor(".js-product-grid", productsHTML);
+  handleAddToCart();
+  
 }
