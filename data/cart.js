@@ -26,18 +26,29 @@ class Cart {
     const cartItem = this.items.find((cartItem) => productId === cartItem.productId);
 
     if (cartItem) {
-
       cartItem.quantity += quantity;
-
     } else {
 
       this.items.push({
 
         productId,
-        quantity
+        quantity,
 
       });
     }
+
+    this.saveToStorage();
+  }
+
+  getQuantity () {
+
+    let quantity = 0;
+
+    this.items.forEach((cartItem) => {
+      quantity += cartItem.quantity;
+    });
+
+    return quantity;
   }
 
 }

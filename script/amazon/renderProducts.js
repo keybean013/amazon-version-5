@@ -1,3 +1,4 @@
+import { cart } from "../../data/cart.js";
 import { products } from "../../data/products.js";
 import { elemEditor } from "../utils/domHelper.js";
 import { handleAddToCart } from "./handleAddToCart.js";
@@ -67,6 +68,7 @@ export function renderProducts () {
     `;
   });
 
+  elemEditor(".cart-quantity", cart.getQuantity());
   elemEditor(".js-product-grid", productsHTML);
   handleAddToCart();
   

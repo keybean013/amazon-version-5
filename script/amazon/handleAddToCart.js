@@ -1,5 +1,5 @@
 import { cart } from "../../data/cart.js";
-import { elemSelector, multiElemSelector } from "../utils/domHelper.js";
+import { elemEditor, elemSelector, multiElemSelector } from "../utils/domHelper.js";
 
 export function handleAddToCart () {
   multiElemSelector(".js-add-to-cart").forEach((btn) => {
@@ -12,7 +12,7 @@ export function handleAddToCart () {
       const quantity = dropDownElement.value;
       
       cart.addItem(productId, Number(quantity));
-      console.log(cart.items);
+      elemEditor(".cart-quantity", cart.getQuantity());
 
     });
   });
