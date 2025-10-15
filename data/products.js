@@ -13,6 +13,14 @@ class Product {
     this.priceCents = productDetails.priceCents;
   }
 
+  getStarsUrl () {
+    return `images/ratings/rating-${this.rating.stars * 10}.png`
+  }
+
+  getPrice () {
+    return (this.priceCents / 100).toFixed(2);
+  }
+
 }
 
 class Clothing extends Product{
