@@ -21,6 +21,10 @@ class Product {
     return (this.priceCents / 100).toFixed(2);
   }
 
+  extraInfo () {
+    return "";
+  }
+
 }
 
 class Clothing extends Product{
@@ -29,6 +33,14 @@ class Clothing extends Product{
   constructor (productDetails) {
     super(productDetails)
     this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfo () {
+    return (
+      `<a href="./images/clothing-size-chart.png">
+        Size chart
+      </a>`
+    )
   }
 }
 

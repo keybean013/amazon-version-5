@@ -49,6 +49,8 @@ export function renderProducts () {
           </select>
         </div>
 
+        ${product.extraInfo()}
+
         <div class="product-spacer"></div>
 
         <div class="added-to-cart">
