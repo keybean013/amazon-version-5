@@ -2,6 +2,7 @@ import { cart } from "../../../data/cart.js";
 import { deliveryOptions } from "../../../data/deliveryOptions.js";
 import { products } from "../../../data/products.js";
 import { elemEditor } from "../../utils/domHelper.js";
+import { renderPaymentSummary } from "../paymentSummary/renderPaymentSummary.js";
 import { handleDelete } from "./handleDelete.js";
 import { handleRadioBtn } from "./handleRadioBtn.js";
 import { handleUpdate } from "./handleUpdate.js";
@@ -78,6 +79,7 @@ export function renderOrderSummary () {
   );
 
   elemEditor(".js-order-summary", orderSummaryHTML);
+  renderPaymentSummary();
   handleDelete();
   handleUpdate();
   handleRadioBtn();
