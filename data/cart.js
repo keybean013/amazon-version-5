@@ -33,6 +33,7 @@ class Cart {
 
         productId,
         quantity,
+        deliveryOptionId: 1
 
       });
     }
@@ -72,6 +73,15 @@ class Cart {
     );
 
     cartItem.quantity = quantity;
+    this.saveToStorage();
+  }
+
+  updateDeliveryOptionId (productId, deliveryOptionId) {
+    const cartItem = this.items.find((cartItem) =>
+      productId === cartItem.productId
+    );
+
+    cartItem.deliveryOptionId = deliveryOptionId;
     this.saveToStorage();
   }
 
