@@ -1,4 +1,5 @@
 import { cart } from "../../../data/cart.js";
+import { deliveryOptions } from "../../../data/deliveryOptions.js";
 import { products } from "../../../data/products.js";
 import { elemEditor } from "../../utils/domHelper.js";
 import { handleDelete } from "./handleDelete.js";
@@ -17,6 +18,8 @@ export function renderOrderSummary () {
     const product = products.find((product) => 
       cartItemId === product.id
     );
+    const delivery = deliveryOptions.find((option) => 
+      cartItem.deliveryOptionId === option.id);
     const productName = product.name;
     const productPrice = product.getPrice();
     const productImage = product.image;
@@ -24,7 +27,7 @@ export function renderOrderSummary () {
     orderSummaryHTML += `
       <div class="cart-item-container">
         <div class="delivery-date">
-          Delivery date: Tuesday, June 21
+          Delivery date: ${delivery.getDeliveryDate()}
         </div>
 
         <div class="cart-item-details-grid">
