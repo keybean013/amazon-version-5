@@ -1,6 +1,7 @@
-import { cart } from "../../data/cart.js";
-import { products } from "../../data/products.js";
-import { elemEditor } from "../utils/domHelper.js";
+import { cart } from "../../../data/cart.js";
+import { products } from "../../../data/products.js";
+import { elemEditor } from "../../utils/domHelper.js";
+import { handleDelete } from "./handleDelete.js";
 
 export function renderOrderSummary () {
   let orderSummaryHTML = "";
@@ -40,7 +41,7 @@ export function renderOrderSummary () {
               <span class="update-quantity-link link-primary">
                 Update
               </span>
-              <span class="delete-quantity-link link-primary">
+              <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${cartItemId}">
                 Delete
               </span>
             </div>
@@ -95,5 +96,15 @@ export function renderOrderSummary () {
     `;
   });
 
+  const cartQty = cart.getQuantity();
+  elemEditor(".js-cart-quantity",
+
+    cartQty <= 1
+    ? `${cartQty} - item`
+    : `${cartQty} - items`
+    
+  )
   elemEditor(".js-order-summary", orderSummaryHTML);
+  handleDelete();
+  
 }

@@ -4,7 +4,7 @@ export async function pageLoader (data, func) {
     await func();
 
   } catch (error) {
-    console.log(error)
+    
     console.log("Something went wrong, please try again later");
 
   }

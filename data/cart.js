@@ -51,6 +51,21 @@ class Cart {
     return quantity;
   }
 
+  deleteItem (productId) {
+    const newCart = [];
+
+    this.items.forEach((cartItem) => {
+
+      if (productId !== cartItem.productId) {
+        newCart.push(cartItem);
+      }
+
+    });
+
+    this.items = newCart;
+    this.saveToStorage();
+  }
+
 }
 
 export let cart = new Cart("regularCart");
