@@ -1,10 +1,10 @@
-export function pageLoader (func, data) {
+export async function pageLoader (data, func) {
   try {
-
-    func();
+    await data();
+    await func();
 
   } catch (error) {
-
+    console.log(error)
     console.log("Something went wrong, please try again later");
 
   }
