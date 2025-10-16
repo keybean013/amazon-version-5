@@ -2,6 +2,7 @@ import { cart } from "../../../data/cart.js";
 import { products } from "../../../data/products.js";
 import { elemEditor } from "../../utils/domHelper.js";
 import { handleDelete } from "./handleDelete.js";
+import { handleUpdate } from "./handleUpdate.js";
 
 export function renderOrderSummary () {
   let orderSummaryHTML = "";
@@ -36,12 +37,13 @@ export function renderOrderSummary () {
             </div>
             <div class="product-quantity">
               <span>
-                Quantity: <span class="quantity-label">${ItemQty}</span>
+                Quantity: <span class="quantity-label js-quantity-label-${cartItemId}">${ItemQty}</span>
+                <input type="number" class="input-quantity js-input-quantity-${cartItemId}" min="1" max="10">
               </span>
-              <span class="update-quantity-link link-primary">
+              <span class="update-quantity-link link-primary js-update-link" data-cart-item-id="${cartItemId}">
                 Update
               </span>
-              <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${cartItemId}">
+              <span class="delete-quantity-link link-primary js-delete-link" data-cart-item-id="${cartItemId}">
                 Delete
               </span>
             </div>
@@ -106,5 +108,6 @@ export function renderOrderSummary () {
   )
   elemEditor(".js-order-summary", orderSummaryHTML);
   handleDelete();
+  handleUpdate();
   
 }

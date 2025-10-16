@@ -66,6 +66,15 @@ class Cart {
     this.saveToStorage();
   }
 
+  updateQty (productId, quantity) {
+    const cartItem = this.items.find((cartItem) => 
+      productId === cartItem.productId
+    );
+
+    cartItem.quantity = quantity;
+    this.saveToStorage();
+  }
+
 }
 
 export let cart = new Cart("regularCart");
