@@ -1,6 +1,7 @@
 import { elemEditor } from "../../utils/domHelper.js";
 import { calculateTotal } from "./calculateTotal.js";
 import { formatCurrency } from "../../utils/formatCurrency.js";
+import { handlePlaceOrder } from "./handlePlaceOrder.js";
 
 export function renderPaymentSummary () {
 
@@ -43,10 +44,11 @@ export function renderPaymentSummary () {
       <div class="payment-summary-money">$${formatCurrency(totalOrderPrice)}</div>
     </div>
 
-    <button class="place-order-button button-primary">
+    <button class="place-order-button button-primary js-place-order-btn">
       Place your order
     </button>
   `;
 
   elemEditor(".js-payment-summary", paymentSummary);
+  handlePlaceOrder();
 }

@@ -1,3 +1,6 @@
+import { saveToStorage, loadFromStorage } from "../script/utils/localStorage.js";
+
+
 class Cart {
   items;
   #localStorageKey;
@@ -5,19 +8,7 @@ class Cart {
   constructor (localStorageKey) {
 
     this.#localStorageKey = localStorageKey;
-    this.items = this.loadFromStorage() || [];
-
-  }
-
-  saveToStorage () {
-
-    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.items));
-
-  }
-
-  loadFromStorage () {
-
-    return JSON.parse(localStorage.getItem(this.#localStorageKey));
+    this.items = loadFromStorage(this.#localStorageKey) || [];
 
   }
 
@@ -38,7 +29,7 @@ class Cart {
       });
     }
 
-    this.saveToStorage();
+    saveToStorage(this.#localStorageKey, this.items);
   }
 
   getQuantity () {
@@ -64,7 +55,7 @@ class Cart {
     });
 
     this.items = newCart;
-    this.saveToStorage();
+    saveToStorage(this.#localStorageKey, this.items);
   }
 
   updateQty (productId, quantity) {
@@ -73,7 +64,7 @@ class Cart {
     );
 
     cartItem.quantity = quantity;
-    this.saveToStorage();
+    saveToStorage(this.#localStorageKey, this.items);
   }
 
   updateDeliveryOptionId (productId, deliveryOptionId) {
@@ -82,7 +73,12 @@ class Cart {
     );
 
     cartItem.deliveryOptionId = deliveryOptionId;
-    this.saveToStorage();
+    saveToStorage(this.#localStorageKey, this.items);
+  }
+
+  clearCart () {
+    this.items = [];
+    saveToStorage(this.#localStorageKey, this.items);
   }
 
 }
